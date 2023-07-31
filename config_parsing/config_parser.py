@@ -18,6 +18,6 @@ def _overwrite_default_values_with_dict(new_values, config_obj):
       raise ValueError(f"Key {key} was present in config file, but was not found in config class")
     if type(val) is dict and not type(getattr(config_obj, key)) is dict:
       # dig down one level in the nested config structure
-      overwrite_default_values_with_dict(val, getattr(config_obj, key))
+      _overwrite_default_values_with_dict(val, getattr(config_obj, key))
     else:
       setattr(config_obj, key, val)
